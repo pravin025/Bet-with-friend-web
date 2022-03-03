@@ -1,13 +1,25 @@
 import './App.css'
-import GroupList from "./components/group-list";
+import Header from './components/hrader';
+import Sidebar from './components/sidebar';
+import Main from './components/main';
+import { ThemeProvider } from '@material-ui/core';
+import theme from './theme'
+import {BrowserRouter as Router} from 'react-router-dom';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <GroupList />
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Header />
+          <div className='main-content'>
+            <Sidebar/>
+            <Main/>
+          </div>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 

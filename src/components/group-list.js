@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
-
+import { Link } from 'react-router-dom'
+import { getGroups } from '../services/group-services'
 function GroupList() {
     const [groups, setGroups] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -8,8 +9,7 @@ function GroupList() {
     useEffect(() => {
         setLoading(true);
         const getData = async() => {
-            await fetch('http://127.0.0.1:8000/api/groups/')
-            .then(resp => resp.json())
+            await getGroups()
             .then(data => {
                 setGroups(data);
             }).catch(e=>{
@@ -25,7 +25,9 @@ function GroupList() {
     return(
         <div>
             {groups && groups.map(group => {
-                return <p>{group.name}</p>
+                return <Link key={group.id} to={`/details/${group.id}`}>
+                    <p>{group.name}</p>
+                </Link>
             })}
         </div>
     );
