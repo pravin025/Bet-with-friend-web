@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
-import {useFetchGroup} from "../hooks/fetch-group"
+import {useFetchGroup} from "../../hooks/fetch-group"
 import {DateTime} from "luxon"
 import EventAvailableTwoToneIcon from '@mui/icons-material/EventAvailableTwoTone';
 import TimerIcon from '@mui/icons-material/Timer';

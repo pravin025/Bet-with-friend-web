@@ -1,24 +1,32 @@
 import './App.css'
-import Header from './components/hrader';
-import Sidebar from './components/sidebar';
-import Main from './components/main';
+import 'react-notifications/lib/notifications.css';
+import Header from './components/layout/hrader';
+import Sidebar from './components/layout/sidebar';
+import Main from './components/layout/main';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './theme'
 import {BrowserRouter as Router} from 'react-router-dom';
+import { AuthProvider } from './hooks/useAuth';
+import {NotificationContainer} from 'react-notifications';
 
 function App() {
+
+  const user = JSON.parse(localStorage.getItem("bwf-user"));
   
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Router>
-          <Header />
-          <div className='main-content'>
-            <Sidebar/>
-            <Main/>
-          </div>
-        </Router>
-      </div>
+      <AuthProvider user={user}>
+        <div className="App">
+          <Router>
+            <Header />
+            <div className='main-content'>
+              <Sidebar/>
+              <Main/>
+            </div>
+          </Router>
+        </div>
+        <NotificationContainer/>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
